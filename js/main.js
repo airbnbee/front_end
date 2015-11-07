@@ -23,6 +23,20 @@ function hideInstructions() {
     TweenMax.to(".instructions", 0.3, {autoAlpha: 0, ease: Strong.easeIn});
 }
 
+function showLoader() {
+            TweenMax.fromTo(".loader", 0.3, {autoAlpha: 0, width:"0px", height:"0px", rotation:"-30"}, {autoAlpha: 1, width:"40px", height:"45px", rotation:"0", ease: Strong.easeOut});
+
+            //var beeTime = new TimelineMax({repeat:6, yoyo:true, onComplete: hideLoader});
+            var beeTime = new TimelineMax({repeat:-1, yoyo:true});
+
+            beeTime.add(TweenMax.fromTo(".bee", 0.5, {top:"25px", rotation:"-8"}, {top:"20px", rotation:"0", ease: Sine.easeInOut}));
+
+        }
+
+        function hideLoader() {
+            TweenMax.fromTo(".loader", 0.3, {autoAlpha: 1, width:"40px", height:"45px", rotation:"0"}, {autoAlpha: 0, width:"0px", height:"0px", rotation:"-30", ease: Strong.easeIn, onComplete: showResults});
+        }
+
 function showResults() {
     "use strict";
     TweenMax.fromTo(".results-tab", 0.3, {autoAlpha: 0, right: "-500px"}, {autoAlpha: 1, right: "0px", ease: Strong.easeOut});
@@ -70,11 +84,15 @@ function displayResult(r) {
         c.html("<li><img src='img/checkmark.svg' alt='checkmark' class='icon-checkmark'> " + str + "</li>");
     });
     
+    hideLoader();
     showResults();
 }
 
 function requestEvaluation(latLng) {
     "use strict";
+
+    showLoader();
+
     $.post('https://lmq0hho3q5.execute-api.us-east-1.amazonaws.com/beta/rate-point',
         JSON.stringify(latLng)
         ).done(function (response) {
