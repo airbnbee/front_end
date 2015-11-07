@@ -34,7 +34,7 @@ body
 	background-color: #ffffff;
 	width: 220px;
 	z-index: 99999999;
-	padding: 50px;
+	padding: 0 50px 0 50px;
 	text-align: center;
 	font-size: 14px;
 	height: 100%;
@@ -63,8 +63,8 @@ body
 }
 
 .rating {
-	padding-top:40px;
-	padding-bottom: 10px;
+	padding-top:80px;
+	padding-bottom:10px;
 }
 
 .rating h1 {
@@ -148,7 +148,7 @@ body
 }
 .instructions {
 	position: absolute;
-	bottom: -100px;
+	bottom: 0px;
 	background-color: #ffffff;
 	padding:20px;
 	font-size: 14px;

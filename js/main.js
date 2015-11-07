@@ -3,7 +3,7 @@
 
 function showInstructions() {
     "use strict";
-    TweenMax.to(".instructions", 0.3, {autoAlpha: 1, bottom: "0px", ease: Strong.easeOut});
+    TweenMax.fromTo(".instructions", 0.3, {autoAlpha: 0, bottom: "-100px"}, {autoAlpha: 1, bottom: "0px", ease: Strong.easeOut});
 }
 
 function onRedClick() {
@@ -20,7 +20,7 @@ function onRedClick() {
 
 function hideInstructions() {
     "use strict";
-    TweenMax.to(".instructions", 0.3, {autoAlpha: 0, bottom: "-100px", ease: Strong.easeIn});
+    TweenMax.to(".instructions", 0.3, {autoAlpha: 0, ease: Strong.easeIn});
 }
 
 function showResults() {
@@ -45,6 +45,8 @@ var classes = [
     'four',
     'five'
 ];
+
+
 
 L.mapbox.accessToken =
     'pk.eyJ1IjoiYWlyYm5iZWUiLCJhIjoiY2lnb2RqdmM3MDAybHVja295OHlvdzFyMyJ9.Rso6y4hksAW_qmS-_O_ung';
@@ -103,3 +105,28 @@ map.on('click', function (e) {
 //    "use strict";
 //    requestEvaluation(marker.getLatLng());
 //});
+
+//var geojson = { type: 'LineString', coordinates: [
+//    [-35.226488, 173.553415],
+//    [-38.316518, 175.648065],
+//    [-39.460550, 175.691010],
+//    [-45.798172, 168.269557]
+//]};
+//
+//var j = 0;
+//var direction = 1;
+//var animate = true;
+//function tick() {
+//    "use strict";
+//    // Set the marker to be at the same point as one
+//    // of the segments or the line.
+//    marker.setLatLng(L.latLng(
+//        geojson.coordinates[j][1],
+//        geojson.coordinates[j][0]
+//    ));
+//
+//    // Move to the next point of the line
+//    // until `j` reaches the length of the array.
+//    if ((j += 1) < geojson.coordinates.length)
+//        setTimeout (tick, 100);
+//}
