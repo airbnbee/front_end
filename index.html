@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf-8 />
+        <title>airbnbee</title>
+        <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+        <script src='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>
+        <link href="main.css" rel='stylesheet' />
+        <link href='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
+    </head>
+    <body>
+        <div id='map'></div>
+        <script>
+            L.mapbox.accessToken = 'pk.eyJ1IjoiYWlyYm5iZWUiLCJhIjoiY2lnb2RqdmM3MDAybHVja295OHlvdzFyMyJ9.Rso6y4hksAW_qmS-_O_ung';
+            var map = L.mapbox.map('map', 'mapbox.streets')
+                .setView([40, -74.50], 9)
+        </script>
+    </body>
+</html>
