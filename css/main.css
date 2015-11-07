@@ -1,0 +1,245 @@
+body 
+{ 
+    margin:0;
+    padding:0;
+   	font-family: 'HelveticaNue', Helvetica, sans-serif, arial;
+   	color: #AF8866;
+}
+
+#map 
+{
+    position: absolute;
+    top:0; 
+    bottom:0;
+    width: 100%;
+    cursor: crosshair;
+}
+
+.icon-bee {
+	padding-right:10px;
+	vertical-align: middle;
+}
+
+.icon-checkmark {
+	padding: 0 3px 0 25px;
+	margin-bottom: 10px;
+
+	vertical-align: top;
+}
+
+.results-tab {
+	position: absolute;
+	right:0;
+	top: 0;
+	background-color: #ffffff;
+	width: 220px;
+	z-index: 99999999;
+	padding: 50px;
+	text-align: center;
+	font-size: 14px;
+	height: 100%;
+	overflow: scroll;
+	visibility: none;
+	opacity: 0;
+
+}
+
+.results-tab ul {
+	list-style: none;
+	list-style-position: inside;
+
+	text-align: left;
+
+	padding: 0;
+}
+.results-tab li {
+	padding-bottom: 5px;
+	padding: 
+}
+
+.results-tab h2 {
+	font-size: 22px;
+	text-align: left;
+}
+
+.rating {
+	padding-top:40px;
+	padding-bottom: 10px;
+}
+
+.rating h1 {
+	padding-top: 40px;
+	font-size: 22px;
+}
+
+/* special classes for each rating */
+
+.one h1 {
+	color:#EF6F6C;
+}
+
+.one.sym {
+	width: 115px;
+	height:100px;
+	background: url(../img/hexagon-bg-red.svg) no-repeat;
+  	background-size: contain;
+}
+
+.two h1 {
+	color:#AF8866;
+}
+
+.two.sym {
+	width: 115px;
+	height:100px;
+	background: url(../img/hexagon-bg-brown.svg) no-repeat;
+  	background-size: contain;
+}
+
+.three h1 {
+	color:#00C0EB;
+}
+
+.three.sym {
+	width: 115px;
+	height:100px;
+	background: url(../img/hexagon-bg-blue.svg) no-repeat;
+  	background-size: contain;
+}
+
+.four h1 {
+	color:#7FB685;
+}
+
+.four.sym {
+	width: 115px;
+	height:100px;
+	background: url(../img/hexagon-bg-green.svg) no-repeat;
+  	background-size: contain;
+}
+
+.five h1 {
+	color:#7FB685;
+}
+
+.five.sym {
+	width: 115px;
+	height:100px;
+	background: url(../img/hexagon-bg-green.svg) no-repeat;
+  	background-size: contain;
+}
+
+.sym {
+	font-size: 40px;
+	font-weight: bold;
+	text-align: center;
+	color: #ffffff;
+	padding: 40px;
+}
+
+.sym img {
+	padding-bottom: 4px;
+}
+
+.divider {
+	border-bottom: 1px solid #EFE7E0;
+	width: 100%;
+	padding-top: 30px;
+}
+.instructions {
+	position: absolute;
+	bottom: -100px;
+	background-color: #ffffff;
+	padding:20px;
+	font-size: 14px;
+	color: #AF8866;
+	z-index: 9999998;
+	width: 40%;
+	text-align: left;
+	visibility: none;
+	opacity: 0;
+}
+
+.instructions a {
+	color: #AF8866;
+}
+
+.overlay {
+	position: absolute;
+	background-color: #AF8866;
+	width: 100%;
+	height: 109%;
+	opacity: 0.2;
+	z-index: 9999997;
+
+}
+
+.intro {
+	margin: auto;
+  	position: absolute;
+  	top: 0; left: 0; bottom: 0; right: 0;
+	width: 430px;
+	height:370px;
+	background: url(../img/hexagon-bg.svg);
+  	background-size: contain;
+  	background-position: center;
+	text-align: center;
+	padding: 50px;
+	overflow: hidden;
+	font-family: 'HelveticaNue', Helvetica, sans-serif, arial;
+	font-size: 18px;
+	color: #AF8866;
+	z-index: 9999999;
+
+}
+p {
+	padding: 0 80px 0 80px;
+}
+
+.logo {
+	width:100%;
+	padding-top: 80px;
+}
+
+.meta {
+	font-size: 12px;
+}
+
+.meta a {
+	color:#AF8866;
+}
+
+
+/* buttons */
+
+.start-btn {
+	font-size: 22px;
+
+}
+
+.results-btn {
+	font-size: 16px;
+}
+
+.red {
+	border-radius: 50px; 
+	-moz-border-radius: 50px; 
+	-webkit-border-radius: 50px; 
+	border: 0px solid #EF6F6C;
+	background-color: #EF6F6C;
+	color: #ffffff;
+
+	padding:10px 30px 10px 30px;
+	display: block;
+	margin: 20px auto;
+
+}
+
+.red:hover {
+	border: 0px solid #D55956;
+	background-color: #D55956;
+	color: #ffffff;
+	cursor: pointer;
+
+}
+

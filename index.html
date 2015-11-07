@@ -1,80 +1,64 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8" />
+        <meta charset=utf-8/>
         <title>airbnbee</title>
         <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' /> 
         <link href='css/main.css' rel='stylesheet' />
         <link href='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
+
     </head>
     <body>
-            <div class="intro">
-    <div class="logo"><img src="img/airbnbee-logo.svg" alt="Airbnbee"></div>
-    <span class="tagline"><p>Welcome to Airbnbee. Where bees find a new home.</p></span>
-    <button class="red" onclick="onRedClick()">Beegin!</button>
-    <span class="credits"><p>Based on Landcare Research data.<br>Made with love at <a href="http://naturehack.confetti.events/" target="_blank">Nature Hack</a>.</p></span>
-    </div>
+        <div class="intro">
+            <div class="logo"><img src="img/airbnbee-logo.svg" alt="Airbnbee"></div>
+            <span class="tagline"><p>Welcome to Airbnbee. Where bees find a new home.</p></span>
+            <button class="start-btn red" onclick="onRedClick()">Beegin!</button>
+            <span class="meta"><p>Based on Landcare Research data.<br>Made with love at <a href="http://naturehack.confetti.events/" target="_blank">Nature Hack</a>.</p></span>
+        </div>
 
-        <div class="instructions"><img src="img/bee.svg" alt="bee" class="icon-bee"><strong>Great!</strong> Now click on a spot where you'd like to start a bee colony. We will analyze it based on <a href="https://confluence.landcareresearch.co.nz/display/LHP/Nature+Hack" target="_blank">Landcare Research</a> data to see how suitable t is. May the force bee with you!</div>
+        <div class="instructions"><img src="img/bee.svg" alt="bee" class="icon-bee"><strong>Great!</strong> Now click on a spot where you'd like to start a bee colony. We will analyze it based on <a href="https://confluence.landcareresearch.co.nz/display/LHP/Nature+Hack" target="_blank">Landcare Research</a> data to see how suitable it is. May the force bee with you!</div>
 
         <div class="results-tab">
-            <div id='rating-value' class="rating">4 <img src="img/star.svg" alt="stars"></div>
-            <h1 id='rating-tile'>Great location!</h1>
-            <ul>
+            <div id='ratings' class="rating five">
+            <span id='rating-value' class="sym five">5 <img src="img/star.svg" alt="stars"></span>
+            <h1 id='rating-title'>Great location!</h1>
+            </div>
+            
+            <ul id='comments'>
                 <li><img src="img/checkmark.svg" alt="checkmark" class="icon-checkmark"> Good access</li>
                 <li><img src="img/checkmark.svg" alt="checkmark" class="icon-checkmark"> Close to water source</li>
                 <li><img src="img/checkmark.svg" alt="checkmark" class="icon-checkmark"> Great soil drainage</li>
                 <li><img src="img/checkmark.svg" alt="checkmark" class="icon-checkmark"> Good altitude</li>
             </ul>
 
-            <button class="red" onclick="onRedClick()">Save this spot!</button>
+            <button class="results-btn red" onclick="onRedClick()">Save this spot!</button>
 
-            <div id="general" class="divider"></div>
+            <div class="divider"></div>
+            
+            <div class="collection">
                 <h2>Data collected:</h2>
-                <p>Distance to nearest road: 55 m</p>
-                <p>Distance to nearest road: 55 m</p>
-                <p>Distance to nearest road: 55 m</p>
-                <p>Distance to nearest road: 55 m</p>
+                <ul>
+                    <li>Nearest road access: 55 m</li>
+                    <li>Nearest water source: 20 m</li>
+                    <li>Soil drainage rating: 4/5</li>
+                </ul>
+            </div>
 
             <span class="meta">
-            <p><strong>Data sources:</strong></p>
-            <p>The New Zealand Fundamental Soil Layer</p>
+                <ul>
+                    <li><strong>Data sources:</strong></li>
+                    <li>The New Zealand Fundamental Soil Layer</li>
+                </ul>
             </span>
 
         </div>
 
         <div class="overlay"></div>
-        <div id='map'></div>
-        <div id='drawer'></div>
+
+       <div id='map'></div>
     </body>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
-    <script>
-        /* -------------- front end animation -------------- */
-
-        function onRedClick() {
-            TweenMax.to(".credits", 0.1, {autoAlpha:0, top:"-20px"});
-            TweenMax.to(".red", 0.1, {autoAlpha:0, top:"-20px"});
-            TweenMax.to(".tagline", 0.1, {autoAlpha:0, top:"-20px", delay: 0.1});
-            TweenMax.to(".logo", 0.1, {autoAlpha:0, top:"-20px", delay: 0.1});
-            TweenMax.to(".overlay", 0.1, {autoAlpha:0, delay: 0.7});
-
-
-            TweenMax.to(".intro", 0.35, {width:"5%", height:"5%", ease: Back.easeOut, delay: 0.4});
-            TweenMax.to(".intro", 0.35, {autoAlpha: 0, delay: 0.6, onComplete: showInstructions});
-
-        }
-
-        function showInstructions() {
-            TweenMax.to(".instructions", 0.3, {autoAlpha: 1, bottom:"0px", ease: Strong.easeOut});
-
-        }
-
-        function hideInstructions() {
-            TweenMax.to(".instructions", 0.3, {autoAlpha: 0, bottom:"-100px", ease: Strong.easeIn});
-
-        }
-    </script>
-    <script src='js/main.js'></script>
+     <script src='js/main.js'></script>
 </html>
