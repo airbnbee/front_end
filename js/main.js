@@ -102,7 +102,7 @@ function requestEvaluation(latLng) {
         displayResult(response);
     });
     
-//    showLoader();
+    showLoader();
 }
 
 function onMapClick() {
