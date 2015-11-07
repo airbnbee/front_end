@@ -1,5 +1,5 @@
 /*jslint browser: true*/
-/*global L, console, $, TweenMax, Back, Strong*/
+/*global L, console, $, TweenMax, Back, Strong, TimelineMax, Sine*/
 
 function showInstructions() {
     "use strict";
@@ -24,22 +24,24 @@ function hideInstructions() {
 }
 
 function showLoader() {
-            TweenMax.fromTo(".loader", 0.3, {autoAlpha: 0, width:"0px", height:"0px", rotation:"-30"}, {autoAlpha: 1, width:"40px", height:"45px", rotation:"0", ease: Strong.easeOut});
+    "use strict";
+    TweenMax.fromTo(".loader", 0.3, {autoAlpha: 0, width: "0px", height: "0px", rotation: "-30"}, {autoAlpha: 1, width: "40px", height: "45px", rotation: "0", ease: Strong.easeOut});
 
-            //var beeTime = new TimelineMax({repeat:6, yoyo:true, onComplete: hideLoader});
-            var beeTime = new TimelineMax({repeat:-1, yoyo:true});
+    //var beeTime = new TimelineMax({repeat:6, yoyo:true, onComplete: hideLoader});
+    var beeTime = new TimelineMax({repeat: -1, yoyo: true});
 
-            beeTime.add(TweenMax.fromTo(".bee", 0.5, {top:"25px", rotation:"-8"}, {top:"20px", rotation:"0", ease: Sine.easeInOut}));
+    beeTime.add(TweenMax.fromTo(".bee", 0.5, {top: "25px", rotation: "-8"}, {top: "20px", rotation: "0", ease: Sine.easeInOut}));
 
-        }
-
-        function hideLoader() {
-            TweenMax.fromTo(".loader", 0.3, {autoAlpha: 1, width:"40px", height:"45px", rotation:"0"}, {autoAlpha: 0, width:"0px", height:"0px", rotation:"-30", ease: Strong.easeIn, onComplete: showResults});
-        }
+}
 
 function showResults() {
     "use strict";
     TweenMax.fromTo(".results-tab", 0.3, {autoAlpha: 0, right: "-500px"}, {autoAlpha: 1, right: "0px", ease: Strong.easeOut});
+}
+
+function hideLoader() {
+    "use strict";
+    TweenMax.fromTo(".loader", 0.3, {autoAlpha: 1, width: "40px", height: "45px", rotation: "0"}, {autoAlpha: 0, width: "0px", height: "0px", rotation: "-30", ease: Strong.easeIn, onComplete: showResults});
 }
 
 var values = ['0', '1', '2', '3', '4', '5'];
@@ -60,8 +62,6 @@ var classes = [
     'five'
 ];
 
-
-
 L.mapbox.accessToken =
     'pk.eyJ1IjoiYWlyYm5iZWUiLCJhIjoiY2lnb2RqdmM3MDAybHVja295OHlvdzFyMyJ9.Rso6y4hksAW_qmS-_O_ung';
 
@@ -75,14 +75,19 @@ var marker = L.marker([0.0, 0.0], {
 function displayResult(r) {
     "use strict";
     // result = rating: int, cons: String[], pros: String[], point: double[2]
-    $('#rating-value').html(values[r.rating] + ' <img src="img/star.svg" alt="stars">').removeClass().addClass('sym ' + classes[r.rating]);
-    $('#rating-title').html(tiles[r.rating]);
-    $('#ratings').removeClass().addClass('rating ' + classes[r.rating]);
+    var rating = r.rating || 4;
+    $('#rating-value').html(values[rating] + ' <img src="img/star.svg" alt="stars">').removeClass().addClass('sym ' + classes[rating]);
+    $('#rating-title').html(tiles[rating]);
+    $('#ratings').removeClass().addClass('rating ' + classes[rating]);
     
-    var c = $('#comments');
-    r.pros.forEach(function (str) {
-        c.html("<li><img src='img/checkmark.svg' alt='checkmark' class='icon-checkmark'> " + str + "</li>");
+    var comments = r.pros || [];
+    var html = '';
+    comments.forEach(function (str) {
+        html += "<li><img src='img/checkmark.svg' alt='checkmark' class='icon-checkmark'> " + str + "</li>";
     });
+    if (html.length > 0) {
+        $('#comments').html(html);
+    }
     
     hideLoader();
     showResults();
@@ -90,14 +95,14 @@ function displayResult(r) {
 
 function requestEvaluation(latLng) {
     "use strict";
-
-    showLoader();
-
     $.post('https://lmq0hho3q5.execute-api.us-east-1.amazonaws.com/beta/rate-point',
         JSON.stringify(latLng)
         ).done(function (response) {
+        console.log(response);
         displayResult(response);
     });
+    
+//    showLoader();
 }
 
 function onMapClick() {
@@ -106,7 +111,7 @@ function onMapClick() {
 }
 
 var map = L.mapbox.map('map', 'airbnbee.2f297ded', {
-    scrollWheelZoom: false
+    scrollWheelZoom: true
 }).setView([-41.290852, 174.753433], 16)
     .addControl(L.mapbox.geocoderControl('mapbox.places', {
         autocomplete: true
@@ -119,32 +124,3 @@ map.on('click', function (e) {
     marker.addTo(map);
     requestEvaluation(e.latlng);
 });
-//map.on('dragend', function (e) {
-//    "use strict";
-//    requestEvaluation(marker.getLatLng());
-//});
-
-//var geojson = { type: 'LineString', coordinates: [
-//    [-35.226488, 173.553415],
-//    [-38.316518, 175.648065],
-//    [-39.460550, 175.691010],
-//    [-45.798172, 168.269557]
-//]};
-//
-//var j = 0;
-//var direction = 1;
-//var animate = true;
-//function tick() {
-//    "use strict";
-//    // Set the marker to be at the same point as one
-//    // of the segments or the line.
-//    marker.setLatLng(L.latLng(
-//        geojson.coordinates[j][1],
-//        geojson.coordinates[j][0]
-//    ));
-//
-//    // Move to the next point of the line
-//    // until `j` reaches the length of the array.
-//    if ((j += 1) < geojson.coordinates.length)
-//        setTimeout (tick, 100);
-//}
